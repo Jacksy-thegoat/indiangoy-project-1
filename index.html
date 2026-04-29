@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#0a0a0a;color:#f0f0f0;font-family:'DM Sans',sans-serif;}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2rem;border-bottom:0.5px solid #222;}
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;color:#fff;}
+  .logo span{color:#c8f135;}
+  nav-links{display:flex;gap:1.5rem;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:#aaa;text-decoration:none;font-size:14px;letter-spacing:1px;text-transform:uppercase;}
+  .nav-links a:hover{color:#fff;}
+  .cart-btn{background:#c8f135;color:#0a0a0a;border:none;padding:0.5rem 1.2rem;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;letter-spacing:1px;}
+  .hero{padding:4rem 2rem 2rem;display:flex;flex-direction:column;align-items:flex-start;}
+  .hero-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c8f135;margin-bottom:0.8rem;}
+  .hero-title{font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:0.95;letter-spacing:2px;color:#fff;margin-bottom:1.5rem;}
+  .hero-title span{color:#c8f135;}
+  .hero-sub{font-size:14px;color:#888;max-width:320px;line-height:1.7;margin-bottom:2rem;}
+  .hero-btns{display:flex;gap:1rem;}
+  .btn-primary{background:#c8f135;color:#0a0a0a;border:none;padding:0.75rem 1.8rem;border-radius:25px;font-weight:500;font-size:14px;cursor:pointer;letter-spacing:0.5px;}
+  .btn-secondary{background:transparent;color:#fff;border:0.5px solid #444;padding:0.75rem 1.8rem;border-radius:25px;font-size:14px;cursor:pointer;}
+  .btn-secondary:hover{border-color:#888;}
+  .ticker{background:#111;border-top:0.5px solid #1a1a1a;border-bottom:0.5px solid #1a1a1a;padding:0.6rem 0;overflow:hidden;margin:2rem 0;}
+  .ticker-inner{display:flex;gap:3rem;white-space:nowrap;animation:scroll 18s linear infinite;}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .ticker-item{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#555;}
+  .ticker-item span{color:#c8f135;margin-right:0.5rem;}
+  .section-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#555;padding:0 2rem;margin-bottom:1rem;}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;padding:0 2rem;margin-bottom:1.5rem;color:#fff;}
+  .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:#1a1a1a;margin:0 2rem 3rem;}
+  .product-card{background:#0f0f0f;padding:1.5rem;cursor:pointer;transition:background 0.2s;}
+  .product-card:hover{background:#141414;}
+  .product-img{width:100%;height:160px;background:#1a1a1a;border-radius:8px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
+  .product-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(200,241,53,0.05));}
+  .badge{position:absolute;top:8px;left:8px;background:#c8f135;color:#0a0a0a;font-size:10px;font-weight:500;padding:3px 8px;border-radius:10px;letter-spacing:0.5px;}
+  .product-brand{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:0.3rem;}
+  .product-name{font-size:15px;font-weight:500;color:#fff;margin-bottom:0.3rem;}
+  .product-colorway{font-size:12px;color:#666;margin-bottom:0.8rem;}
+  .product-footer{display:flex;justify-content:space-between;align-items:center;}
+  .product-price{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#c8f135;}
+  .retail{font-size:11px;color:#555;text-decoration:line-through;}
+  .add-btn{background:#fff;color:#0a0a0a;border:none;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:400;}
+  .add-btn:hover{background:#c8f135;}
+  .brands{display:flex;gap:0;padding:0 2rem;margin-bottom:3rem;overflow-x:auto;}
+  .brand-pill{border:0.5px solid #222;padding:0.5rem 1.2rem;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#666;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+  .brand-pill:first-child{border-radius:20px 0 0 20px;}
+  .brand-pill:last-child{border-radius:0 20px 20px 0;}
+  .brand-pill.active,.brand-pill:hover{background:#c8f135;color:#0a0a0a;border-color:#c8f135;}
+  .footer-strip{background:#111;border-top:0.5px solid #1a1a1a;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+  .footer-strip p{font-size:12px;color:#444;letter-spacing:1px;}
+  .social-links{display:flex;gap:1rem;}
+  .social-links a{font-size:12px;color:#444;text-decoration:none;letter-spacing:1px;text-transform:uppercase;}
+  .social-links a:hover{color:#c8f135;}
+  .toast{position:fixed;bottom:1.5rem;right:1.5rem;background:#c8f135;color:#0a0a0a;padding:0.75rem 1.2rem;border-radius:12px;font-size:13px;font-weight:500;opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none;}
+  .toast.show{opacity:1;transform:translateY(0);}
+</style>
+
+<nav>
+  <div class="logo">SOLE<span>DROP</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Drops</a></li>
+    <li><a href="#">Brands</a></li>
+    <li><a href="#">Streetwear</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <button class="cart-btn">Bag (0)</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">New Delhi's Sneaker Plug</div>
+  <div class="hero-title">HEAT<br>DROPS<br><span>DAILY.</span></div>
+  <div class="hero-sub">Authenticated sneakers & streetwear. No fakes, no middlemen. Direct to your door across India.</div>
+  <div class="hero-btns">
+    <button class="btn-primary">Shop Now</button>
+    <button class="btn-secondary">View Lookbook</button>
+  </div>
+</div>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ticker-item"><span>✓</span> 100% Authenticated</div>
+    <div class="ticker-item"><span>✓</span> Pan-India Shipping</div>
+    <div class="ticker-item"><span>✓</span> Limited Pairs Only</div>
+    <div class="ticker-item"><span>✓</span> Instant Payout for Sellers</div>
+    <div class="ticker-item"><span>✓</span> 100% Authenticated</div>
+    <div class="ticker-item"><span>✓</span> Pan-India Shipping</div>
+    <div class="ticker-item"><span>✓</span> Limited Pairs Only</div>
+    <div class="ticker-item"><span>✓</span> Instant Payout for Sellers</div>
+  </div>
+</div>
+
+<div class="section-label">Latest Drops</div>
+<div class="section-title">Fresh off the shelf</div>
+
+<div class="brands">
+  <div class="brand-pill active">All</div>
+  <div class="brand-pill">Nike</div>
+  <div class="brand-pill">Jordan</div>
+  <div class="brand-pill">Adidas</div>
+  <div class="brand-pill">New Balance</div>
+  <div class="brand-pill">Asics</div>
+</div>
+
+<div class="products">
+  <div class="product-card">
+    <div class="product-img">👟<div class="badge">Just Dropped</div></div>
+    <div class="product-brand">Nike</div>
+    <div class="product-name">Air Force 1 '07</div>
+    <div class="product-colorway">White / White</div>
+    <div class="product-footer">
+      <div>
+        <div class="product-price">₹9,500</div>
+        <div class="retail">Retail ₹7,495</div>
+      </div>
+      <button class="add-btn" onclick="addToCart(this)">+</button>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img">👟<div class="badge">🔥 Hot</div></div>
+    <div class="product-brand">Jordan</div>
+    <div class="product-name">Air Jordan 1 Retro High</div>
+    <div class="product-colorway">Chicago / Red / Black</div>
+    <div class="product-footer">
+      <div>
+        <div class="product-price">₹24,000</div>
+        <div class="retail">Retail ₹12,995</div>
+      </div>
+      <button class="add-btn" onclick="addToCart(this)">+</button>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img">👟<div class="badge">Last Pair</div></div>
+    <div class="product-brand">Adidas</div>
+    <div class="product-name">Samba OG</div>
+    <div class="product-colorway">Core Black / Cloud White</div>
+    <div class="product-footer">
+      <div>
+        <div class="product-price">₹11,000</div>
+        <div class="retail">Retail ₹8,999</div>
+      </div>
+      <button class="add-btn" onclick="addToCart(this)">+</button>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img">👟</div>
+    <div class="product-brand">New Balance</div>
+    <div class="product-name">990v6 Made in USA</div>
+    <div class="product-colorway">Grey / Silver</div>
+    <div class="product-footer">
+      <div>
+        <div class="product-price">₹19,500</div>
+        <div class="retail">Retail ₹16,999</div>
+      </div>
+      <button class="add-btn" onclick="addToCart(this)">+</button>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img">👟<div class="badge">🔥 Hot</div></div>
+    <div class="product-brand">Asics</div>
+    <div class="product-name">Gel-Kayano 14</div>
+    <div class="product-colorway">Cream / Piedmont Grey</div>
+    <div class="product-footer">
+      <div>
+        <div class="product-price">₹13,000</div>
+        <div class="retail">Retail ₹9,999</div>
+      </div>
+      <button class="add-btn" onclick="addToCart(this)">+</button>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img">👟</div>
+    <div class="product-brand">Nike</div>
+    <div class="product-name">Dunk Low Retro</div>
+    <div class="product-colorway">Panda / Black & White</div>
+    <div class="product-footer">
+      <div>
+        <div class="product-price">₹14,500</div>
+        <div class="retail">Retail ₹8,495</div>
+      </div>
+      <button class="add-btn" onclick="addToCart(this)">+</button>
+    </div>
+  </div>
+</div>
+
+<div class="footer-strip">
+  <p>© 2026 SoleDrop India — Authenticated Resale</p>
+  <div class="social-links">
+    <a href="#">Instagram</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">Discord</a>
+  </div>
+</div>
+
+<div class="toast" id="toast">Added to bag!</div>
+
+<script>
+let cartCount = 0;
+const cartBtn = document.querySelector('.cart-btn');
+const toast = document.getElementById('toast');
+
+function addToCart(btn) {
+  cartCount++;
+  cartBtn.textContent = `Bag (${cartCount})`;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+document.querySelectorAll('.brand-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.brand-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+  });
+});
+</script>
